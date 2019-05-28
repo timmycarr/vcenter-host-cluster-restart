@@ -21,7 +21,6 @@ for host in `govc find $cluster_path -type h`; do
     sleep 10
     conn_state=$(govc object.collect -json $host | jq -r '.[28] .Val .ConnectionState')
   done
-  echo "exited the loop"
 #wait for the host to come back online in vCenter
   while [ $conn_state != "connected" ]; do
     echo "Waiting for the esxi host $host to come back online in vCenter - sleeping for 10s"
